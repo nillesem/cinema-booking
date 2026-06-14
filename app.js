@@ -20,7 +20,7 @@ const MOVIES = [
         director: "Nathan Greno",
         cast: ["Michael Jordan", "Juno Temple", "Tracy Morgan"],
         synopsis: "A tiny woodland creature and a majestic bird suddenly swap bodies, forcing them to team up to survive the wildest adventure of their lives.",
-        poster: "/fly.jpg",
+        poster: "fly.jpg",
         status: "now_showing",
         showtimes:["10:00 AM", "11:55 AM", "1:50 PM", "3:45 PM", "5:40 PM", "7:35 PM"]
     },
@@ -34,7 +34,7 @@ const MOVIES = [
         director: "Daniel Chong",
         cast: ["Piper Curda", "Bobby Moynihan", "Jon Hamm"],
         synopsis: "A 19-year-old animal lover uses technology that places her consciousness into a robotic beaver to uncover mysteries within the animal world beyond her imagination.",
-        poster: "/hoppers.jpg",
+        poster: "hoppers.jpg",
         status: "now_showing",
         showtimes: ["10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM", "6:00 PM", "8:00 PM"]
     },
@@ -48,7 +48,7 @@ const MOVIES = [
         director: "Yeon Sang-ho",
         cast: ["Jun Ji-hyun", "Koo Kyo-hwan", "Ji Chang-wook"],
         synopsis: "Professor Se-jeong is thrust into a bloody nightmare when a rapidly mutating virus is released during a biotech conference causing authorities to seal the facility. Trapped inside with no escape, Se-jeong along with a small group of survivors must fight to stay alive while the infected undergo horrific transformations.",
-        poster: "/colony.jpg",
+        poster: "colony.jpg",
         status: "now_showing",
         showtimes: ["10:00 AM", "12:20 PM", "2:40 PM", "5:00 PM", "7:20 PM"]
     },
@@ -62,7 +62,7 @@ const MOVIES = [
         director: "Michael Tiddes",
         cast: ["Anna Faris", "Mariom Wayans", "Shawn Wayans"],
         synopsis: "Twenty-six years after outrunning a suspiciously familiar masked killer, the Core Four are back in the killer's crosshairs and no horror movie IP is safe.",
-        poster: "/imagae.jpg",
+        poster: "imagae.jpg",
         status: "now_showing",
         showtimes: ["10:00 AM", "11:45 AM", "1:30 PM", "3:15 PM", "5:00 PM", "6:45 PM"]
     },
@@ -76,7 +76,7 @@ const MOVIES = [
         director: "Curry Barker",
         cast: ["Michael Johnston", "Inde Navarrette", "Copper Tomlinson"],
         synopsis: "After breaking the mysterious One Wish Willow to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinister price.",
-        poster: "/obsession.jpg",
+        poster: "obsession.jpg",
         status: "now_showing",
         showtimes: ["10:00 AM", "12:05 PM", "2:10 PM", "4:15 PM", "6:20 PM"]
     },
@@ -90,7 +90,7 @@ const MOVIES = [
         director: "Kane Parsons",
         cast: ["Chiwetel Ejiofor", "Renate Reinsve", "Mark Duplass"],
         synopsis: "A strange doorway appears in the basement of a furniture showroom.",
-        poster: "/back.jpg",
+        poster: "back.jpg",
         status: "now_showing",
         showtimes: ["10:00 AM", "12:10 PM", "2:20 PM", "4:30 PM", "6:40 PM"]
     },
@@ -104,7 +104,7 @@ const MOVIES = [
         director: "Pierre Coffin",
         cast: ["Pierre Coffin", "Allison Janney", "Christoph Waltz"],
         synopsis: "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to try and save the planet from the mayhem they had just created..",
-        poster: "/minions.jpg",
+        poster: "minions.jpg",
         status: "coming_soon"
     },
     {
@@ -117,7 +117,7 @@ const MOVIES = [
         director: "Thomas Kail",
         cast: ["Catherine Laga‘aia", "Dwayne Johnson", "Rena Owen"],
         synopsis: "Moana answers the Ocean's call and, for the first time, voyages beyond the reef of her island of Motunui with the infamous demigod Maui on an unforgettable journey to restore prosperity to her people.",
-        poster: "/moana.jpg",
+        poster: "moana.jpg",
         status: "coming_soon"
     },
     {
@@ -130,7 +130,7 @@ const MOVIES = [
         director: "Januel Mercado, Joel Crawford",
         cast: ["H.E.R", "Liza Soberano", "Dave Franco"],
         synopsis: "Jo and Raissa find themselves stranded in the mystical world of the forgotten island of Nakali. They discover that their only way home might come at the expense of a lifetime of shared memories.",
-        poster: "/forgotten.jpg",
+        poster: "forgotten.jpg",
         status: "coming_soon"
     },
         {
@@ -143,7 +143,7 @@ const MOVIES = [
         director: "Destin Daniel Cretton",
         cast: ["Tom Holland", "Sadie Sink", "Zendaya"],
         synopsis: "Four years have passed since the events of No Way Home, and Peter is now an adult living entirely alone, having voluntarily erased himself from the lives and memories of those he loves. Crime-fighting in a New York that no longer knows his name, he's devoted himself entirely to protecting his city — a full-time Spider-Man — but as the demands on him intensify, the pressure sparks a surprising physical evolution that threatens his existence, even as a strange new pattern of crimes gives rise to one of the most powerful threats he has ever faced.",
-        poster: "/spider.jpg",
+        poster: "spider.jpg",
         status: "coming_soon"
     },
     {
@@ -156,7 +156,7 @@ const MOVIES = [
         director: "Lauren Montgomery",
         cast: ["Eric Nam","Jessica Matten", "Dave Bautista","Steven Yeun", "Dionne Quan","Román Zaragoza"],
         synopsis: "Avatar Aang, the world's last Airbender, learns of an ancient power that could save his culture from extinction. With the help of his friends, he embarks on a global quest to find it before it falls into the wrong hands and threatens to upend the peace they sacrificed everything to achieve.",
-        poster: "/Aang.jpg",
+        poster: "Aang.jpg",
         status: "coming_soon"
     },
     {
@@ -169,7 +169,7 @@ const MOVIES = [
         director: "Francis Lawrence",
         cast: ["Mckenna Grace", "Jennifer Lawrence", "Joseph Zada","Elle Fanning"],
         synopsis: "Return to the world of Panem 24 years before the events of The Hunger Games, starting on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quell.",
-        poster: "/games.jpg",
+        poster: "games.jpg",
         status: "coming_soon"
     }
 ];
@@ -217,7 +217,7 @@ function updateNav(activePage) {
 function renderHome() {
     app.innerHTML = `
         <div class="hero-banner">
-            <img src="/cine.jpg" class="hero-image" alt="Cinema Banner">
+            <img src="cine.jpg" class="hero-image" alt="Cinema Banner">
             </div>
         </div>
         <div class="tab-container">
