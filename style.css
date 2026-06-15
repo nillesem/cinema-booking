@@ -444,6 +444,29 @@ body {
     text-align: center;
 }
 
+#qrcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#qrcode canvas,
+#qrcode img {
+    display: block;
+}
+
+.qr-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#qrcode canvas,
+#qrcode img {
+    display: block;
+}
 .payment-sim {
     display: flex;
     flex-direction: column;

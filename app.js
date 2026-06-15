@@ -476,8 +476,9 @@ ${ticket.studentId !== "N/A" ? `
 
 <p><strong>Total Paid:</strong> ₱${ticket.total.toLocaleString()}</p>
 
-<div id="qrcode"></div>
-                </div>
+<div class="qr-wrapper">
+    <div id="qrcode"></div>
+</div>
                 <p class="disclaimer">Demo QR - School Project Only. No real payment</p>
             </div>
             
