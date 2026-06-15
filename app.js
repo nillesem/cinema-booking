@@ -188,9 +188,7 @@ function navigateTo(page, params = {}) {
     window.scrollTo(0, 0);
     updateNav(page);
     
-    if (page === 'home') {
-        renderHome();
-    } else if (page === 'movies') {
+    if (page === 'movies') {
         renderMovies();
     } else if (page === 'movie-details') {
         renderMovieDetails(params.movieId);
@@ -497,15 +495,21 @@ ${ticket.studentId !== "N/A" ? `
     const qr = document.getElementById("qrcode");
 
     if (qr) {
-        new QRCode(qr, {
-            text: `${ticket.id}|${ticket.movieTitle}|${ticket.time}|${ticket.seats.join(',')}`,
-            width: 120,
-            height: 120
-        });
-    }
-}, 100);
-}
+        qr.innerHTML = ""; // clear previous QR
 
+        if (typeof QRCode !== "undefined") {
+            new QRCode(qr, {
+                text: `${ticket.id}|${ticket.movieTitle}|${ticket.time}|${ticket.seats.join(',')}`,
+                width: 120,
+                height: 120
+            });
+        } else {
+            console.error("QRCode library failed to load.");
+            qr.innerHTML = "<p>QR Code unavailable</p>";
+        }
+    }
+}, 300);
+}
 function simulatePayment() {
     alert("Payment Successful!");
 }
@@ -556,7 +560,7 @@ function cancelTicket(ticketId, movieId, showtime) {
 
 // Initial Load
 window.onload = () => {
-    navigateTo('home');
+    navigateTo('movies');
 };
 
 // Expose functions to window for onclick handlers in HTML
