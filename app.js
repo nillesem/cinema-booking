@@ -1,3 +1,4 @@
+let paymentCompleted = false; 
 const REGULAR_PRICE = 350;
 const STUDENT_PROMO_PRICE = 199;
 
@@ -15,7 +16,7 @@ const MOVIES = [
         title: "Swapped",
         rating: "PG",
         runtime: "1h 38 min",
-        releaseDate: "May 28, 2026",
+        releaseDate: "June 12, 2026",
         genre: "Animation, Adventure",
         director: "Nathan Greno",
         cast: ["Michael Jordan", "Juno Temple", "Tracy Morgan"],
@@ -29,7 +30,7 @@ const MOVIES = [
         title: "Hoppers",
         rating: "PG",
         runtime: "1h 44 min",
-        releaseDate: "May 31, 2026",
+        releaseDate: "June 13, 2026",
         genre: "Comedy, Sci-Fic",
         director: "Daniel Chong",
         cast: ["Piper Curda", "Bobby Moynihan", "Jon Hamm"],
@@ -39,10 +40,24 @@ const MOVIES = [
         showtimes: ["10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM", "6:00 PM", "8:00 PM"]
     },
     {
-        id: 3,
+    id: 3,
+    title: "Toy Story 5",
+    rating: "PG",
+    runtime: "1h 42 min",
+    releaseDate: "June 19, 2026",
+    genre: "Animated Adventure, Comedy, family",
+    director: "Andrew Stanton",
+    cast: ["Tom Hanks", "Tim Allen","Joan Cusack"],
+    synopsis: "Woody, Buzz, Jessie and the rest of the gang's jobs are challenged when they're introduced to electronics, a new threat to playtime.",
+    poster: "Toy Story 5.jpg",
+    status: "now_showing",
+    showtimes: ["10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM", "6:00 PM", "8:00 PM"]
+},
+    {
+        id: 4,
         title: "Colony",
         rating: "R-13",
-        runtime: "2h 02min",
+        runtime: "2h 02 min",
         releaseDate: "May 27, 2026",
         genre: "Action, Horror, Thriller",
         director: "Yeon Sang-ho",
@@ -53,7 +68,7 @@ const MOVIES = [
         showtimes: ["10:00 AM", "12:20 PM", "2:40 PM", "5:00 PM", "7:20 PM"]
     },
     {
-        id: 4,
+        id: 5,
         title: "Scary Movie",
         rating: "R-16",
         runtime: "1h 30 min",
@@ -67,7 +82,7 @@ const MOVIES = [
         showtimes: ["10:00 AM", "11:45 AM", "1:30 PM", "3:15 PM", "5:00 PM", "6:45 PM"]
     },
      {
-        id: 5,
+        id: 6,
         title: "Obsession",
         rating: "R-16",
         runtime: "1h 48 min",
@@ -81,7 +96,21 @@ const MOVIES = [
         showtimes: ["10:00 AM", "12:05 PM", "2:10 PM", "4:15 PM", "6:20 PM"]
     },
      {
-        id: 6,
+        id: 7,
+        title: "The Amazing Digital Circus",
+        rating: "R-13",
+        runtime: "1h 34 min",
+        releaseDate: "June 03, 2026",
+        genre: "Animation, Adventure",
+        director: "Kane Parsons",
+        cast: ["Lizzie Freeman", "Michael Kovach", "Amanda Hufford"],
+        synopsis: "Discover the fates of Pomni and the gang as they unravel the true secret & history of the Digital Circus as this show finally arrives at its last act.",
+        poster: "Circus.jpg",
+        status: "now_showing",
+        showtimes: ["10:00 AM", "11:55 AM", "1:50 PM", "3:45 PM", "5:40 PM", "7:35 PM"]
+    },
+      {
+        id: 8,
         title: "Back Rooms",
         rating: "R-13",
         runtime: "1h 50 min",
@@ -95,7 +124,7 @@ const MOVIES = [
         showtimes: ["10:00 AM", "12:10 PM", "2:20 PM", "4:30 PM", "6:40 PM"]
     },
     {
-        id: 7,
+        id: 9,
         title: "Minions & Monster",
         rating: "PG",
         runtime: "1h 29 min",
@@ -103,15 +132,28 @@ const MOVIES = [
         genre: "Animation, Adventure, Comedy, Sci-Fic",
         director: "Pierre Coffin",
         cast: ["Pierre Coffin", "Allison Janney", "Christoph Waltz"],
-        synopsis: "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to try and save the planet from the mayhem they had just created..",
+        synopsis: "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to try and save the planet from the mayhem they had just created.",
         poster: "minions.jpg",
         status: "coming_soon"
     },
     {
-        id: 8,
+    id: 10,
+    title: "Black Box",
+    rating: "R",
+    runtime: "2h 0 min",
+    releaseDate: "July 7, 2026",
+    genre: "Triller",
+    director: "Steven Quale",
+    cast: ["Anton Trendafilov", "Asa Ali", "Tom Brittney"],
+    synopsis: "Vero Airlines Flight 298 from New Orleans to Seattle becomes the center of a chilling supernatural mystery.",
+    poster: "black.jpeg",
+    status: "coming_soon"
+   }, 
+   {
+        id: 11,
         title: "Moana",
         rating: "G",
-        runtime: "1h 45min",
+        runtime: "1h 45 min",
         releaseDate: "July 08, 2026",
         genre: "Adventure, Comedy, Family, Fantasy",
         director: "Thomas Kail",
@@ -120,8 +162,34 @@ const MOVIES = [
         poster: "moana.jpg",
         status: "coming_soon"
     },
+{
+    id: 12,
+    title: "The Odyssey",
+    rating: "R",
+    runtime: "2h 52 min",
+    releaseDate: "July 15, 2026",
+    genre: "Action",
+    director: "Christopher Nolan",
+    cast: ["Tom Holland", "Robert Pattinson", "Matt Damon", "Anne Hathaway"],
+    synopsis: "After the Trojan War, Odysseus faces a dangerous voyage back to Ithaca, meeting creatures like the Cyclops Polyphemus, Sirens, and Calypso along the way.",
+    poster: "oda.jpeg",
+    status: "coming_soon"
+   },
+   {
+        id: 13,
+        title: "Spider-Man: Brand New Day",
+        rating: "PG-13",
+        runtime: "2h 30 min",
+        releaseDate: "July 29, 2026",
+        genre: "Adventure, Action, Sci-Fic",
+        director: "Destin Daniel Cretton",
+        cast: ["Tom Holland", "Sadie Sink", "Zendaya"],
+        synopsis: "Four years have passed since the events of No Way Home, and Peter is now an adult living entirely alone, having voluntarily erased himself from the lives and memories of those he loves. Crime-fighting in a New York that no longer knows his name, he's devoted himself entirely to protecting his city — a full-time Spider-Man — but as the demands on him intensify, the pressure sparks a surprising physical evolution that threatens his existence, even as a strange new pattern of crimes gives rise to one of the most powerful threats he has ever faced.",
+        poster: "spider.jpg",
+        status: "coming_soon"
+   },
     {
-        id: 9,
+        id: 14,
         title: "Forgotten Island",
         rating: "PG-13",
         runtime: "1h 38 min",
@@ -133,21 +201,8 @@ const MOVIES = [
         poster: "forgotten.jpg",
         status: "coming_soon"
     },
-        {
-        id: 10,
-        title: "Spider-Man:             Brand New Day",
-        rating: "PG-13",
-        runtime: "2h 30 min",
-        releaseDate: "July 29, 2026",
-        genre: "Adventure, Action, Sci-Fic",
-        director: "Destin Daniel Cretton",
-        cast: ["Tom Holland", "Sadie Sink", "Zendaya"],
-        synopsis: "Four years have passed since the events of No Way Home, and Peter is now an adult living entirely alone, having voluntarily erased himself from the lives and memories of those he loves. Crime-fighting in a New York that no longer knows his name, he's devoted himself entirely to protecting his city — a full-time Spider-Man — but as the demands on him intensify, the pressure sparks a surprising physical evolution that threatens his existence, even as a strange new pattern of crimes gives rise to one of the most powerful threats he has ever faced.",
-        poster: "spider.jpg",
-        status: "coming_soon"
-    },
     {
-        id: 11,
+        id: 15,
         title: "Avatar Aang: The Last Airbender",
         rating: "PG-13",
         runtime: "1h 39 min",
@@ -160,7 +215,7 @@ const MOVIES = [
         status: "coming_soon"
     },
     {
-        id: 12,
+        id: 16,
         title: "The Hunger Games: Sunrise on the Reaping",
         rating: "PG-13",
         runtime: "2h 30 min",
@@ -171,7 +226,7 @@ const MOVIES = [
         synopsis: "Return to the world of Panem 24 years before the events of The Hunger Games, starting on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quell.",
         poster: "games.jpg",
         status: "coming_soon"
-    }
+    },
 ];
 
 let currentTab = 'now_showing';
@@ -292,7 +347,7 @@ function renderMovieDetails(movieId) {
                 ` : `
 <button
   class="cta-btn"
-  onclick="alert('We will notify you when tickets are available!')">
+  onclick="showAlert('Notification', 'We will notify you when tickets are available!')">
   Notify Me
 </button>
                 `}
@@ -417,7 +472,7 @@ const total = selectedSeats.length * price;
 
 function goToSeatSelection() {
     if (!selectedShowtime) {
-        alert("Please select a showtime first!");
+        showAlert("Warning", "Please select a showtime first!");
         return;
     }
     navigateTo('seat-selection', { movieId: selectedMovie.id, showtime: selectedShowtime });
@@ -483,13 +538,31 @@ ${ticket.studentId !== "N/A" ? `
             </div>
             
             <div class="payment-sim">
-                <p style="text-align:center; margin-bottom: 10px; font-weight: bold;">Simulate Payment</p>
-                <button class="pay-btn" onclick="simulatePayment()">Cash at Counter</button>
-                <button class="pay-btn" onclick="simulatePayment()">GCash</button>
-                <button class="pay-btn" onclick="simulatePayment()">Card</button>
-            </div>
+    <p style="text-align:center; margin-bottom: 10px; font-weight: bold;">
+        Select Payment Method
+    </p>
 
-            <button class="cta-btn" style="width: 100%; margin-top: 20px;" onclick="navigateTo('tickets')">Go to My Tickets</button>
+    <button class="pay-btn" onclick="simulatePayment('Cash at Counter')">
+    Cash at Counter
+</button>
+
+<button class="pay-btn" onclick="simulatePayment('GCash')">
+    GCash
+</button>
+
+<button class="pay-btn" onclick="simulatePayment('Card')">
+    Card
+</button>
+</div>
+
+<button
+    id="myTicketsBtn"
+    class="cta-btn"
+    style="width: 100%; margin-top: 20px;"
+    onclick="navigateTo('tickets')"
+    disabled>
+    Complete Payment First
+</button>
         </div>
     `;
     setTimeout(() => {
@@ -511,8 +584,28 @@ ${ticket.studentId !== "N/A" ? `
     }
 }, 300);
 }
-function simulatePayment() {
-    alert("Payment Successful!");
+function simulatePayment(method) {
+    
+    myTickets[myTickets.length - 1].paymentMethod = method;
+    
+    localStorage.setItem(
+        'myTickets',
+        JSON.stringify(myTickets)
+    );
+    
+    if (method === "Cash at Counter") {
+        showAlert(
+            "Reservation Created",
+            "Please present this ticket at the counter and complete your payment."
+        );
+    } else {
+        showAlert(
+            "Payment Successful",
+            `Payment Method: ${method}`
+        );
+    }
+    
+    document.getElementById("myTicketsBtn").disabled = false;
 }
 
 function renderMyTickets() {
@@ -526,39 +619,59 @@ function renderMyTickets() {
                 </div>
             ` : myTickets.map(ticket => `
                 <div class="ticket-item">
-                    <div>
-                        <h3>${ticket.movieTitle}</h3>
-                        <p>${ticket.date} | ${ticket.time} | Seats: ${ticket.seats.join(', ')}</p>
-                        <p style="font-size: 0.8rem; color: var(--primary);">ID: #${ticket.id}</p>
-                    </div>
-                    <button class="cancel-btn"
-                        onclick="cancelTicket('${ticket.id}', ${ticket.movieId}, '${ticket.time}')">
-                        Cancel
-                    </button>
-                </div>
+    <div>
+        <h3>${ticket.movieTitle}</h3>
+        <p>${ticket.date} | ${ticket.time} | Seats: ${ticket.seats.join(', ')}</p>
+        <p style="font-size: 0.8rem; color: var(--primary);">ID: #${ticket.id}</p>
+        <p style="font-size: 0.8rem; color: var(--primary);">
+            Payment: ${ticket.paymentMethod || "Not Selected"}
+        </p>
+    </div>
+
+    ${!ticket.paymentMethod || ticket.paymentMethod === "Cash at Counter" ? `
+        <button class="cancel-btn"
+            onclick="cancelTicket('${ticket.id}', ${ticket.movieId}, '${ticket.time}')">
+            Cancel
+        </button>
+    ` : `
+        <button class="cancel-btn" disabled>
+            Paid
+        </button>
+    `}
+</div>
             `).join('')}
         </div>
     `;
 }
 function cancelTicket(ticketId, movieId, showtime) {
-    if (confirm("Are you sure you want to cancel this booking?")) {
-        const ticketIndex = myTickets.findIndex(t => t.id === ticketId);
-        if (ticketIndex > -1) {
-            const ticket = myTickets[ticketIndex];
-            
-            // Return seats to available (remove from bookedSeats)
-            if (bookedSeats[movieId]) {
-                bookedSeats[movieId] = bookedSeats[movieId].filter(seat => !ticket.seats.includes(seat));
-                localStorage.setItem('bookedSeats', JSON.stringify(bookedSeats));
-            }
-
-            myTickets.splice(ticketIndex, 1);
-            localStorage.setItem('myTickets', JSON.stringify(myTickets));
-            renderMyTickets();
+    showAlert("Cancelled", "Booking has been cancelled.");
+    
+    const ticketIndex = myTickets.findIndex(t => t.id === ticketId);
+    if (ticketIndex > -1) {
+        const ticket = myTickets[ticketIndex];
+        
+        if (bookedSeats[movieId]) {
+            bookedSeats[movieId] = bookedSeats[movieId].filter(
+                seat => !ticket.seats.includes(seat)
+            );
+            localStorage.setItem('bookedSeats', JSON.stringify(bookedSeats));
         }
+        
+        myTickets.splice(ticketIndex, 1);
+        localStorage.setItem('myTickets', JSON.stringify(myTickets));
+        renderMyTickets();
     }
 }
 
+function showAlert(title, message) {
+    document.getElementById("alertTitle").textContent = title;
+    document.getElementById("alertMessage").textContent = message;
+    document.getElementById("customAlert").style.display = "flex";
+}
+
+function closeAlert() {
+    document.getElementById("customAlert").style.display = "none";
+}
 // Initial Load
 window.onload = () => {
     navigateTo('movies');
@@ -573,5 +686,6 @@ window.toggleSeat = toggleSeat;
 window.confirmBooking = confirmBooking;
 window.simulatePayment = simulatePayment;
 window.cancelTicket = cancelTicket;
-
+window.showAlert = showAlert;
+window.closeAlert = closeAlert;
                     
