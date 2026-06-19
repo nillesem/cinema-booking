@@ -1,3 +1,4 @@
+emailjs.init("Swsg3EKRpZsV71nBa");
 let paymentCompleted = false; 
 const REGULAR_PRICE = 350;
 const STUDENT_PROMO_PRICE = 199;
@@ -410,7 +411,7 @@ function renderMovieDetails(movieId) {
                 ` : `
 <button
   class="cta-btn"
-  onclick="showAlert('Notification', 'We will notify you when tickets are available!')">
+  onclick="notifyMe('${movie.title}')">
   Notify Me
 </button>
                 `}
@@ -698,10 +699,13 @@ return;closeAlert()
         completeBtn.style.cursor = "pointer";
     }
     
+    // SEND BOOKING EMAIL
+    sendBookingEmail(lastTicket);
+    
     showAlert(
-        "Payment Selected",
-        `Payment Method: ${method}`
-    );
+    "Confirmation Email Sent",
+    `We've sent you a copy of booking confirmation and receipt to ${localStorage.getItem("userEmail")}.`
+);
 }
 function renderMyTickets() {
     app.innerHTML = `
@@ -789,7 +793,8 @@ function renderSignup() {
 
                 <label>Username</label>
                 <input type="text" id="new-username" placeholder="Choose a username">
-
+<label>Email</label>
+<input type="email" id="new-email" placeholder="Enter your email">
                 <label>Password</label>
                 <input type="password" id="new-password" placeholder="Create password">
 
@@ -808,69 +813,77 @@ function renderSignup() {
 }
 function signup() {
     const username = document.getElementById('new-username').value.trim();
+    const email = document.getElementById('new-email').value.trim();
     const password = document.getElementById('new-password').value.trim();
     
-    if (!username || !password) {
-        alert("Please fill all fields");
+    if (!username || !email || !password) {
+        showAlert("Missing Info", "Please fill all fields.");
         return;
     }
     
-    // check if user exists
-    if (localStorage.getItem("user_" + username)) {
-        alert("Username already exists!");
-        return;
-    }
+    const userData = {
+        email: email,
+        password: password
+    };
     
-    localStorage.setItem("user_" + username, password);
+    localStorage.setItem("user_" + username, JSON.stringify(userData));
     
-    showAlert(
-    "Account Created",
-    "Your account has been created successfully. Please log in."
-);
-
-showAccount();
+    console.log("Saved:", "user_" + username, userData);
+    
+    showAlert("Success", "Account created! You can now log in.");
+    
+    renderLogin();
 }
-
 function login() {
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
     
-    const savedPass = localStorage.getItem("user_" + username);
-    
-    if (savedPass === password) {
-    localStorage.setItem('currentUser', username);
-currentUser = username;
-
-afterLoginAction = function() {
-    
-    const selectedMethod =
-        sessionStorage.getItem("selectedPaymentMethod");
-    
-    if (selectedMethod) {
-        
-        sessionStorage.removeItem("selectedPaymentMethod");
-        sessionStorage.removeItem("redirectAfterLogin");
-        
-        const lastTicket = myTickets[myTickets.length - 1];
-        
-        if (lastTicket) {
-            renderConfirmation(lastTicket);
-            
-            setTimeout(() => {
-                processPayment(selectedMethod);
-            }, 300);
-        }
-        
-    } else {
-        navigateTo('movies');
+    if (!username || !password) {
+        showAlert("Missing Information", "Please enter username and password.");
+        return;
     }
-};
-
-showAlert(
-    "Success",
-    "Login successful!"
-);
-}
+    
+    const stored = localStorage.getItem("user_" + username);
+    
+    console.log("Looking for:", "user_" + username);
+    console.log("Found:", stored);
+    
+    if (!stored) {
+        showAlert("Login Failed", "Account not found.");
+        return;
+    }
+    
+    const userData = JSON.parse(stored);
+    
+    if (userData.password !== password) {
+        showAlert("Login Failed", "Incorrect password.");
+        return;
+    }
+    
+    currentUser = username;
+    localStorage.setItem("currentUser", username);
+    localStorage.setItem("userEmail", userData.email);
+    
+    showAlert("Success", `Welcome back, ${username}!`);
+    
+    afterLoginAction = function() {
+        const selectedMethod = sessionStorage.getItem("selectedPaymentMethod");
+        
+        if (selectedMethod) {
+            sessionStorage.removeItem("selectedPaymentMethod");
+            sessionStorage.removeItem("redirectAfterLogin");
+            
+            const lastTicket = myTickets[myTickets.length - 1];
+            
+            if (lastTicket) {
+                renderConfirmation(lastTicket);
+                setTimeout(() => processPayment(selectedMethod), 300);
+            }
+            
+        } else {
+            navigateTo('movies');
+        }
+    };
 }
 function renderProfile() {
     app.innerHTML = `
@@ -1024,9 +1037,89 @@ function closeAlert() {
 
 // Initial Load
 window.onload = () => {
-    navigateTo('movies');
+    
+    if (window.location.hash === "#tickets") {
+        navigateTo("tickets");
+    } else {
+        navigateTo("movies");
+    }
+    
 };
 
+function notifyMe(movieTitle) {
+    
+    const email = localStorage.getItem("userEmail");
+    
+    if (!email) {
+        showAlert(
+            "No Email Found",
+            "Please create an account first."
+        );
+        return;
+    }
+    
+    const movie = MOVIES.find(m => m.title === movieTitle);
+    
+    emailjs.send(
+            "service_qieu2tq",
+            "template_t2vktjl",
+            {
+                to_email: email,
+                email: email,
+                customer_name: currentUser,
+                movie_name: movieTitle,
+                release_date: movie ? movie.releaseDate : "TBA"
+            }
+        )
+        .then(() => {
+            showAlert(
+                "Success",
+                `Notification sent to ${email}`
+            );
+        })
+        .catch((error) => {
+            console.error("EMAILJS:", error);
+            showAlert(
+                "Error",
+                error.text || "Failed to send email."
+            );
+        });
+}
+function sendBookingEmail(ticket) {
+    const email = localStorage.getItem("userEmail");
+    
+    if (!email) return;
+    
+    emailjs.send(
+            "service_qieu2tq",
+            "template_dbqp09r",
+            {
+                customer_name: currentUser,
+                movie_name: ticket.movieTitle,
+                movie_date: ticket.date,
+                showtime: ticket.time,
+                seats: ticket.seats.join(", "),
+                ticket_id: ticket.id,
+                payment_method: ticket.paymentMethod,
+                total_paid: ticket.total,
+                to_email: email
+            }
+        )
+        .then(() => {
+            showAlert(
+                "Confirmation Email Sent",
+                `We've sent your booking receipt to ${email}. Please check your inbox.`
+            );
+        })
+        .catch((error) => {
+            console.error("Email error:", error);
+            
+            showAlert(
+                "Email Failed",
+                "Your booking was saved, but we could not send the confirmation email."
+            );
+        });
+}
 // Expose functions to window for onclick handlers in HTML
 window.navigateTo = navigateTo;
 window.switchTab = switchTab;
@@ -1039,5 +1132,7 @@ window.simulatePayment = simulatePayment;
 window.cancelTicket = cancelTicket;
 window.showAlert = showAlert;
 window.closeAlert = closeAlert;
+window.notifyMe = notifyMe;   
+window.signup = signup;
+window.login = login;
 
-                    
