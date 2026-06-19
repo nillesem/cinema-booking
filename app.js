@@ -239,6 +239,7 @@ const MOVIES = [
     showtimes: ["10:00 AM", "12:45 PM", "3:30 PM", "6:15 PM"]
     },
 ];
+
 let isProcessingPayment = false;
 let currentTab = 'now_showing';
 let selectedMovie = null;
@@ -861,8 +862,9 @@ function login() {
     }
     
     currentUser = username;
-    localStorage.setItem("currentUser", username);
-    localStorage.setItem("userEmail", userData.email);
+localStorage.setItem("currentUser", username);
+localStorage.setItem("userEmail", userData.email);
+localStorage.setItem("loggedIn", "true");
     
     showAlert("Success", `Welcome back, ${username}!`);
     
@@ -1049,16 +1051,23 @@ window.onload = () => {
 function notifyMe(movieTitle) {
     
     const email = localStorage.getItem("userEmail");
+    const loggedIn = localStorage.getItem("currentUser");
     
-    if (!email) {
+    // ❌ no login
+    if (!loggedIn || !email) {
         showAlert(
-            "No Email Found",
-            "Please create an account first."
+            "Not Logged In",
+            "Please log in first to receive notifications."
         );
         return;
     }
     
     const movie = MOVIES.find(m => m.title === movieTitle);
+    
+    if (!movie) {
+        showAlert("Error", "Movie not found.");
+        return;
+    }
     
     emailjs.send(
             "service_qieu2tq",
@@ -1066,9 +1075,9 @@ function notifyMe(movieTitle) {
             {
                 to_email: email,
                 email: email,
-                customer_name: currentUser,
-                movie_name: movieTitle,
-                release_date: movie ? movie.releaseDate : "TBA"
+                customer_name: currentUser || loggedIn,
+                movie_name: movie.title,
+                release_date: movie.releaseDate || "TBA"
             }
         )
         .then(() => {
@@ -1081,7 +1090,7 @@ function notifyMe(movieTitle) {
             console.error("EMAILJS:", error);
             showAlert(
                 "Error",
-                error.text || "Failed to send email."
+                error?.text || "Failed to send email."
             );
         });
 }
