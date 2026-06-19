@@ -8,16 +8,20 @@
     <title>Infinity Cinema | Movie Booking</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-  <header class="header">
+<header class="header">
     <div class="header-container">
-        <a href="#" class="logo" onclick="navigateTo('movies')">INFINITY CINEMA</a>
-
+        
+        <!-- Logo / Site Name -->
+        <a href="#" class="logo" onclick="navigateTo('movies')">
+            Infinity Cinema
+        </a>
+        
+        <!-- Navigation -->
         <nav class="nav-menu">
-            <a href="#" class="nav-link" id="nav-movies" onclick="navigateTo('movies')">Movies</a>
-            <a href="#" class="nav-link" id="nav-tickets" onclick="navigateTo('tickets')">My Tickets</a>
+            <a href="#" class="nav-link" onclick="navigateTo('movies')">Movies</a>
+            <a href="#" class="nav-link" onclick="navigateTo('tickets')">My Tickets</a>
         </nav>
+        
     </div>
 </header>
     <main id="app-container">
@@ -25,48 +29,63 @@
     </main>
 
 <footer class="footer">
+    
     <div class="footer-container">
+        
         <div class="footer-section">
             <h3>About</h3>
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Careers</a>
+            <a href="#" onclick="navigateTo('movies')">Movies</a>
+            <a href="#" onclick="navigateTo('account')">Account</a>
+            <a href="#" onclick="navigateTo('about')">About Us</a>
         </div>
         
-        <div class="footer-section">
-            <h3>Movies</h3>
-            <a href="#">Now Showing</a>
-            <a href="#">Coming Soon</a>
-        </div>
+       <div class="footer-section">
+    <h3>Movies</h3>
+    <a href="#" onclick="goToMovieSection('now_showing')">Now Showing</a>
+<a href="#" onclick="goToMovieSection('coming_soon')">Coming Soon</a>
+    <a href="#" onclick="navigateTo('tickets')">My Tickets</a>
+</div>
         
         <div class="footer-section">
-            <h3>Help</h3>
-            <a href="#">FAQ</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Privacy Policy</a>
-        </div>
+    <h3>Help</h3>
+    <span>FAQ</span>
+    <span>Terms & Conditions</span>
+    <span>Privacy Policy</span>
+</div>
         
-        <div class="footer-section">
-            <h3>Contact</h3>
-            <div class="socials">
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-instagram"></i>
-            </div>
-        </div>
+<div class="footer-section">
+    <h3>Contact</h3>
+    <div class="socials">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+    </div>
+</div>
+        
     </div>
     
     <div class="footer-bottom">
-        © 2026 Infinity Cinema. School Project Only. Not affiliated with any movie studios.
+        © 2026 Infinity Cinema. School Project Only.
     </div>
+    
 </footer>
 <div id="customAlert" class="custom-alert">
     <div class="alert-box">
         <h3 id="alertTitle">Success</h3>
         <p id="alertMessage">Payment Successful!</p>
-        <button onclick="closeAlert()">OK</button>
+        
+        <div class="alert-buttons">
+            <button id="okBtn" onclick="closeAlert()">OK</button>
+            
+            <button id="yesBtn" onclick="confirmAlert()" style="display:none;">
+                Yes
+            </button>
+            
+            <button id="noBtn" onclick="closeAlert()" style="display:none;">
+                No
+            </button>
+        </div>
     </div>
 </div>
-
     <script src="app.js"></script>
 </body>
 </html>
