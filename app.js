@@ -239,7 +239,7 @@ const MOVIES = [
     showtimes: ["10:00 AM", "12:45 PM", "3:30 PM", "6:15 PM"]
     },
 ];
-
+let isProcessingPayment = false;
 let currentTab = 'now_showing';
 let selectedMovie = null;
 let selectedShowtime = null;
@@ -666,7 +666,8 @@ function simulatePayment(method) {
 
 sessionStorage.setItem("goToLogin", "true");
 
-return;closeAlert()
+closeAlert();
+return;
     }
     
     processPayment(method);
@@ -699,12 +700,11 @@ return;closeAlert()
         completeBtn.style.cursor = "pointer";
     }
     
-    // SEND BOOKING EMAIL
-    sendBookingEmail(lastTicket);
-    
-    showAlert(
+   sendBookingEmail(lastTicket);
+
+showAlert(
     "Confirmation Email Sent",
-    `We've sent you a copy of booking confirmation and receipt to ${localStorage.getItem("userEmail")}.`
+    `We've sent your booking receipt to ${localStorage.getItem("userEmail")}.`
 );
 }
 function renderMyTickets() {
@@ -1105,12 +1105,6 @@ function sendBookingEmail(ticket) {
                 to_email: email
             }
         )
-        .then(() => {
-            showAlert(
-                "Confirmation Email Sent",
-                `We've sent your booking receipt to ${email}. Please check your inbox.`
-            );
-        })
         .catch((error) => {
             console.error("Email error:", error);
             
