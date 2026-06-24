@@ -866,7 +866,7 @@ localStorage.setItem("currentUser", username);
 localStorage.setItem("userEmail", userData.email);
 localStorage.setItem("loggedIn", "true");
     
-    showAlert("Success", `Welcome, ${username}!`);
+    showAlert("Success", `Welcome, ${username}`);
     
     afterLoginAction = function() {
         const selectedMethod = sessionStorage.getItem("selectedPaymentMethod");
